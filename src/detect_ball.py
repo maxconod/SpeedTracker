@@ -1,16 +1,6 @@
-import cv2 as cv
+from ultralytics import YOLO
+import cv2
 
-cap = cv.VideoCapture("C:/Users/maxim/Documents/Uni_Projects/SpeedTracker/Data/BallExchange.mp4")
-
-# Needing to extract one frame after another
-while True:
-    ret, frame = cap.read()
-
-    cv.imshow("Frame", frame)
-
-    key = cv.waitKey(30)
-    if key == 27:
-        break
-
-cap.release()
-cv.destroyAllWindows()
+model = YOLO("yolov8n.pt")
+results = model("C:/Users/maxim/Documents/Uni_Projects/SpeedTracker/Data/pic2_tennis.jpg", show=True)
+cv2.waitKey(0)
